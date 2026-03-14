@@ -81,6 +81,8 @@ export type MsgContext = {
   ForwardedFromChatType?: string;
   ForwardedFromMessageId?: number;
   ForwardedDate?: number;
+  /** How many times the message has been forwarded (WhatsApp forwarding score). */
+  ForwardingScore?: number;
   ThreadStarterBody?: string;
   /** Full thread history when starting a new thread session. */
   ThreadHistoryBody?: string;

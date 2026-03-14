@@ -331,6 +331,13 @@ export async function processMessage(params: {
     Surface: "whatsapp",
     OriginatingChannel: "whatsapp",
     OriginatingTo: params.msg.from,
+    ...(params.msg.isForwarded
+      ? {
+          // WhatsApp does not expose the original sender for privacy reasons.
+          ForwardedFrom: "unknown sender",
+          ForwardingScore: params.msg.forwardingScore,
+        }
+      : {}),
   });
 
   // Only update main session's lastRoute when DM actually IS the main session.
