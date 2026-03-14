@@ -448,7 +448,9 @@ describe("web processMessage inbound contract", () => {
     expect(capturedCtx).toBeTruthy();
     // oxlint-disable-next-line typescript/no-explicit-any
     const ctx = capturedCtx as any;
-    expect(ctx.ForwardedFrom).toBe("unknown sender");
+    expect(ctx.ForwardedFrom).toBe(
+      "unknown sender (WhatsApp does not disclose the original sender)",
+    );
     expect(ctx.ForwardingScore).toBe(1);
   });
 

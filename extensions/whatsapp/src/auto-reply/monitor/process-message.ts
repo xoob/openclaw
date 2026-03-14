@@ -333,8 +333,11 @@ export async function processMessage(params: {
     OriginatingTo: params.msg.from,
     ...(params.msg.isForwarded
       ? {
-          // WhatsApp does not expose the original sender for privacy reasons.
-          ForwardedFrom: "unknown sender",
+          // WhatsApp intentionally withholds the original sender's identity for all
+          // forwarded messages — this is a platform-level privacy design, not missing
+          // data. The string below is surfaced verbatim to agents so they understand
+          // they cannot determine who wrote the original content.
+          ForwardedFrom: "unknown sender (WhatsApp does not disclose the original sender)",
           ForwardingScore: params.msg.forwardingScore,
         }
       : {}),
